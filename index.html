@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treinos Duathlon</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzQzODVmNCIgZD0iTTEyIDJhMiAyIDAgMCAxIDIgMiAyIDIgMCAwIDEtMiAyIDIgMiAwIDAgMS0yLTIgMiAyIDAgMCAxIDItMm0tMS41IDVoM2wxLjUgMS41VjEwSDEwLjVWNy41TDEyIDZtLTYuNSA2YTIuNSAyLjUgMCAwIDEgMi41IDIuNSAyLjUgMi41IDAgMCAxLTIuNSAyLjUgMi41IDIuNSAwIDAgMS0yLjUtMi41IDIuNSAyLjUgMCAwIDEgMi41LTIuNW0xMyAwYTIuNSAyLjUgMCAwIDEgMi41IDIuNSAyLjUgMi41IDAgMCAxLTIuNSAyLjUgMi41IDIuNSAwIDAgMS0yLjUtMi41IDIuNSAyLjUgMCAwIDEgMi41LTIuNW0tOS0uNWwyLjUgMyAyLjUtMSAyLjUgMi41LTIuNSAyLTIuNS0yLTIuNSAxLTIuNS0yLjVMMTAgMTJtLTMuNSA2LjVhMiAyIDAgMCAxIDIgMiAyIDIgMCAwIDEtMiAyIDIgMiAwIDAgMS0yLTIgMiAyIDAgMCAxIDItMm0xMyAwYTIgMiAwIDAgMSAyIDIgMiAyIDAgMCAxLTIgMiAyIDIgMCAwIDEtMi0yIDIgMiAwIDAgMSAyLTJaIi8+PC9zdmc+">
+    
+    <!-- Favicon alternativo para navegadores antigos -->
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAGsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAArAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAArAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAAMAAAAAAAAAAAAAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -278,60 +285,100 @@
                 </form>
             </div>
         </div>
+
+        <!-- Modal de Confirmação de Reset -->
+        <div id="resetModal" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm hidden items-center justify-center z-50">
+            <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md mx-4 transform transition-all scale-95 opacity-0" id="resetModalContent">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-exclamation-triangle text-2xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Resetar Semana</h3>
+                    <p class="text-gray-600">Tem certeza que deseja resetar todos os status da semana para pendente?</p>
+                </div>
+                
+                <div class="flex justify-center gap-3">
+                    <button onclick="closeResetModal()" 
+                            class="px-6 py-2.5 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">
+                        Cancelar
+                    </button>
+                    <button onclick="confirmReset()" 
+                            class="px-6 py-2.5 rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 transition-colors font-medium">
+                        Confirmar Reset
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Dados dos treinos
-        const workoutData = [
-            {
-                dia: "Segunda-feira",
-                treino: "Descanso ou Fortalecimento",
-                descricao: "Musculação para pernas e core",
-                status: false
-            },
-            {
-                dia: "Terça-feira",
-                treino: "Corrida + Transição Bike",
-                descricao: "5 km moderado + 15-20 km de bike",
-                status: false
-            },
-            {
-                dia: "Quarta-feira",
-                treino: "Intervalado na Corrida ou Bike Forte",
-                descricao: "6 a 8 tiros de 400m a 1 km OU 30-40 min de bike intensa",
-                status: false
-            },
-            {
-                dia: "Quinta-feira",
-                treino: "Bike leve + Força",
-                descricao: "20-30 km em ritmo moderado + treino de força",
-                status: false
-            },
-            {
-                dia: "Sexta-feira",
-                treino: "Corrida Progressiva",
-                descricao: "5 a 8 km aumentando o ritmo a cada km",
-                status: false
-            },
-            {
-                dia: "Sábado",
-                treino: "Longão ou Simulado Duathlon",
-                descricao: "10-15 km de corrida OU 5 km corrida + 25-30 km bike + 2,5 km corrida",
-                status: false
-            },
-            {
-                dia: "Domingo",
-                treino: "Pedal Longo",
-                descricao: "40-50 km em ritmo confortável",
-                status: false
+        // Função para carregar dados do localStorage ou usar dados padrão
+        function loadWorkoutData() {
+            const savedData = localStorage.getItem('workoutData');
+            if (savedData) {
+                return JSON.parse(savedData);
             }
-        ];
+
+            // Dados padrão caso não exista nada no localStorage
+            return [
+                {
+                    dia: "Segunda-feira",
+                    treino: "Descanso ou Fortalecimento",
+                    descricao: "Musculação para pernas e core",
+                    status: false
+                },
+                {
+                    dia: "Terça-feira",
+                    treino: "Corrida + Transição Bike",
+                    descricao: "5 km moderado + 15-20 km de bike",
+                    status: false
+                },
+                {
+                    dia: "Quarta-feira",
+                    treino: "Intervalado na Corrida ou Bike Forte",
+                    descricao: "6 a 8 tiros de 400m a 1 km OU 30-40 min de bike intensa",
+                    status: false
+                },
+                {
+                    dia: "Quinta-feira",
+                    treino: "Bike leve + Força",
+                    descricao: "20-30 km em ritmo moderado + treino de força",
+                    status: false
+                },
+                {
+                    dia: "Sexta-feira",
+                    treino: "Corrida Progressiva",
+                    descricao: "5 a 8 km aumentando o ritmo a cada km",
+                    status: false
+                },
+                {
+                    dia: "Sábado",
+                    treino: "Longão ou Simulado Duathlon",
+                    descricao: "10-15 km de corrida OU 5 km corrida + 25-30 km bike + 2,5 km corrida",
+                    status: false
+                },
+                {
+                    dia: "Domingo",
+                    treino: "Pedal Longo",
+                    descricao: "40-50 km em ritmo confortável",
+                    status: false
+                }
+            ];
+        }
+
+        // Inicializar dados
+        let workoutData = loadWorkoutData();
+
+        // Função para salvar dados no localStorage
+        function saveWorkoutData() {
+            localStorage.setItem('workoutData', JSON.stringify(workoutData));
+        }
 
         // Função para renderizar a tabela
         function renderTable() {
             const tbody = document.getElementById('workout-table');
             tbody.innerHTML = workoutData.map((workout, index) => `
-                <tr class="hover:bg-gray-50 transition-colors">
+                <tr class="hover:bg-gray-50 transition-colors ${workout.status ? 'bg-green-50' : ''}">
                     <td class="px-6 py-4 font-medium text-gray-900">${workout.dia}</td>
                     <td class="px-6 py-4 text-gray-700">${workout.treino}</td>
                     <td class="px-6 py-4 text-gray-600">${workout.descricao}</td>
@@ -359,6 +406,7 @@
         // Função para alternar o status
         function toggleStatus(index) {
             workoutData[index].status = !workoutData[index].status;
+            saveWorkoutData(); // Salva após alteração
             renderTable();
         }
 
@@ -387,13 +435,96 @@
             workoutData[index].treino = treino;
             workoutData[index].descricao = descricao;
             
+            saveWorkoutData(); // Salva após edição
             renderTable();
             closeModal();
         });
 
-        // Inicializar a tabela quando a página carregar
+        // Função para mostrar o modal de reset com animação
+        function showResetModal() {
+            const modal = document.getElementById('resetModal');
+            const modalContent = document.getElementById('resetModalContent');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Pequeno delay para a animação funcionar
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 50);
+        }
+
+        // Função para fechar o modal de reset com animação
+        function closeResetModal() {
+            const modal = document.getElementById('resetModal');
+            const modalContent = document.getElementById('resetModalContent');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // Função para confirmar o reset
+        function confirmReset() {
+            workoutData = workoutData.map(workout => ({
+                ...workout,
+                status: false
+            }));
+            saveWorkoutData();
+            renderTable();
+            closeResetModal();
+            
+            // Mostrar notificação de sucesso
+            showNotification('Semana resetada com sucesso!');
+        }
+
+        // Função para mostrar notificação
+        function showNotification(message) {
+            // Criar elemento de notificação
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-y-full opacity-0';
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animar entrada
+            setTimeout(() => {
+                notification.classList.remove('translate-y-full', 'opacity-0');
+            }, 50);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Atualizar a função de adicionar botão de reset
+        function addResetButton() {
+            const container = document.querySelector('.mb-10');
+            const resetButton = document.createElement('button');
+            resetButton.className = 'mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center mx-auto';
+            resetButton.innerHTML = '<i class="fas fa-redo mr-2"></i>Resetar Semana';
+            resetButton.onclick = showResetModal; // Alterado para mostrar o modal
+            container.appendChild(resetButton);
+        }
+
+        // Inicializar a tabela e adicionar botão de reset quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             renderTable();
+            addResetButton();
         });
     </script>
 </body>
