@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinos Duathlon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navegação -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-center space-x-8">
+                <a href="#treinos" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md">Treinos</a>
+                <a href="#nutricao" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md">Nutrição</a>
+                <a href="#hidratacao" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md">Hidratação</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Seção de Treinos -->
+        <section id="treinos" class="py-16">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+                    Meus Treinos da Semana
+                </h1>
+                <p class="text-gray-600 text-lg">Duathlon</p>
+                <div class="h-1 w-24 mx-auto bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-16">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gray-900 text-white">
+                                <th class="px-6 py-4 text-left">Dia</th>
+                                <th class="px-6 py-4 text-left">Treino</th>
+                                <th class="px-6 py-4 text-left">Descrição</th>
+                                <th class="px-6 py-4 text-center">Status</th>
+                                <th class="px-6 py-4 text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100" id="workout-table">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Nutrição -->
+        <section id="nutricao" class="py-16 border-t border-gray-200">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
+                    Nutrição para Duathlon
+                </h2>
+                <div class="h-1 w-24 mx-auto bg-gradient-to-r from-green-500 to-teal-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card Antes -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-hourglass-start text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Antes do Treino</h3>
+                            <p class="text-sm text-gray-500">30-60 min antes</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Treinos Curtos</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🍌</span> Banana com pasta de amendoim
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🍞</span> Pão integral com queijo
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🥄</span> Iogurte com aveia
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Treinos Longos</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🍯</span> Banana + pão com mel
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🍫</span> Barra de proteína
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🥤</span> 200ml isotônico
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Durante -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mr-4">
+                            <i class="fas fa-running text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Durante o Treino</h3>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">💧</span> Água a cada 20-30 min
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">⚡</span> Gel/frutas a cada 30-40 min
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🧂</span> Eletrólitos a cada 40-60 min
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-4 border-2 border-green-100">
+                            <h4 class="font-semibold text-green-700 mb-2">Transição Bike → Corrida</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🥤</span> Goles de isotônico
+                                </li>
+                                <li class="flex items-center text-gray-600">
+                                    <span class="mr-2">🍌</span> ½ banana ou tâmara
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Depois -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mr-4">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Depois do Treino</h3>
+                            <p class="text-sm text-gray-500">Até 30 min depois</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <span class="mr-2">🥤</span> Shake proteico + banana
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <span class="mr-2">🍳</span> Omelete + batata-doce
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <span class="mr-2">🍗</span> Frango + arroz + legumes
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Hidratação -->
+        <section id="hidratacao" class="py-16 border-t border-gray-200">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+                    Hidratação
+                </h2>
+                <div class="h-1 w-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4">
+                            <i class="fas fa-hourglass-start text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Antes</h3>
+                        <p class="text-gray-600">500ml água</p>
+                        <p class="text-sm text-gray-500 mt-1">1h antes</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4">
+                            <i class="fas fa-running text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Durante</h3>
+                        <p class="text-gray-600">150-200ml água</p>
+                        <p class="text-sm text-gray-500 mt-1">Cada 20 min</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4">
+                            <i class="fas fa-check-circle text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Depois</h3>
+                        <p class="text-gray-600">1.5L líquidos</p>
+                        <p class="text-sm text-gray-500 mt-1">Por kg perdido</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo Rápido -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Resumo para Provas</h3>
+                    <p class="text-blue-500">Quick Guide</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 rounded-xl p-4 transition-all hover:shadow-md">
+                        <span class="text-sm font-medium text-blue-600 block mb-2">Antes</span>
+                        <p class="text-gray-700">🍌 Banana + pão com mel + café</p>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-4 transition-all hover:shadow-md">
+                        <span class="text-sm font-medium text-green-600 block mb-2">Durante</span>
+                        <p class="text-gray-700">🍯 Gel 40-50 min + isotônico</p>
+                    </div>
+                    <div class="bg-purple-50 rounded-xl p-4 transition-all hover:shadow-md">
+                        <span class="text-sm font-medium text-purple-600 block mb-2">Transição</span>
+                        <p class="text-gray-700">🥤 Isotônico + ½ banana</p>
+                    </div>
+                    <div class="bg-indigo-50 rounded-xl p-4 transition-all hover:shadow-md">
+                        <span class="text-sm font-medium text-indigo-600 block mb-2">Depois</span>
+                        <p class="text-gray-700">🍗 Proteína + carboidrato</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Edição -->
+        <div id="editModal" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm hidden items-center justify-center z-50">
+            <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md mx-4">
+                <h3 class="text-2xl font-bold mb-6">Editar Treino</h3>
+                
+                <form id="editForm" class="space-y-4">
+                    <input type="hidden" id="editIndex">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Treino</label>
+                        <input type="text" id="editTreino" 
+                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+                        <textarea id="editDescricao" rows="3" 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end gap-3 mt-6">
+                        <button type="button" onclick="closeModal()" 
+                                class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" 
+                                class="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos treinos
+        const workoutData = [
+            {
+                dia: "Segunda-feira",
+                treino: "Descanso ou Fortalecimento",
+                descricao: "Musculação para pernas e core",
+                status: false
+            },
+            {
+                dia: "Terça-feira",
+                treino: "Corrida + Transição Bike",
+                descricao: "5 km moderado + 15-20 km de bike",
+                status: false
+            },
+            {
+                dia: "Quarta-feira",
+                treino: "Intervalado na Corrida ou Bike Forte",
+                descricao: "6 a 8 tiros de 400m a 1 km OU 30-40 min de bike intensa",
+                status: false
+            },
+            {
+                dia: "Quinta-feira",
+                treino: "Bike leve + Força",
+                descricao: "20-30 km em ritmo moderado + treino de força",
+                status: false
+            },
+            {
+                dia: "Sexta-feira",
+                treino: "Corrida Progressiva",
+                descricao: "5 a 8 km aumentando o ritmo a cada km",
+                status: false
+            },
+            {
+                dia: "Sábado",
+                treino: "Longão ou Simulado Duathlon",
+                descricao: "10-15 km de corrida OU 5 km corrida + 25-30 km bike + 2,5 km corrida",
+                status: false
+            },
+            {
+                dia: "Domingo",
+                treino: "Pedal Longo",
+                descricao: "40-50 km em ritmo confortável",
+                status: false
+            }
+        ];
+
+        // Função para renderizar a tabela
+        function renderTable() {
+            const tbody = document.getElementById('workout-table');
+            tbody.innerHTML = workoutData.map((workout, index) => `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 font-medium text-gray-900">${workout.dia}</td>
+                    <td class="px-6 py-4 text-gray-700">${workout.treino}</td>
+                    <td class="px-6 py-4 text-gray-600">${workout.descricao}</td>
+                    <td class="px-6 py-4">
+                        <button class="w-full group" onclick="toggleStatus(${index})">
+                            <span class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium 
+                                ${workout.status ? 'bg-green-100 text-green-700 group-hover:bg-green-200' : 'bg-red-100 text-red-700 group-hover:bg-red-200'} 
+                                transition-colors w-32">
+                                <i class="fas ${workout.status ? 'fa-check-circle' : 'fa-times-circle'} mr-2"></i>
+                                ${workout.status ? 'CONCLUÍDO' : 'PENDENTE'}
+                            </span>
+                        </button>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="openModal(${index})" 
+                                class="inline-flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-edit mr-2"></i>
+                            Editar
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Função para alternar o status
+        function toggleStatus(index) {
+            workoutData[index].status = !workoutData[index].status;
+            renderTable();
+        }
+
+        // Funções do modal
+        function openModal(index) {
+            const workout = workoutData[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('editTreino').value = workout.treino;
+            document.getElementById('editDescricao').value = workout.descricao;
+            document.getElementById('editModal').classList.remove('hidden');
+            document.getElementById('editModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            document.getElementById('editModal').classList.remove('flex');
+        }
+
+        // Manipulador do formulário de edição
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const index = document.getElementById('editIndex').value;
+            const treino = document.getElementById('editTreino').value;
+            const descricao = document.getElementById('editDescricao').value;
+            
+            workoutData[index].treino = treino;
+            workoutData[index].descricao = descricao;
+            
+            renderTable();
+            closeModal();
+        });
+
+        // Inicializar a tabela quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+        });
+    </script>
+</body>
+</html>
